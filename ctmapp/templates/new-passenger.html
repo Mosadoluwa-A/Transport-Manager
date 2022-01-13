@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+			{% if message.level == 25 %}
+				<div class="alert  alert-success {{ message.tags }} alert-dismissible w-25 mt-2" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{ message | safe }}
+				</div>
+			{% else %}
+				<div class="alert  alert-danger {{ message.tags }} alert-dismissible w-25 mt-2" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{ message | safe }}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<section id="main">
+		<h4 class="display-4 text-white">Add a New Passenger</h4>
+
+		<form method="post" action=" " class="w-50 bg-light p-5">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="text" class="form-control" name="name" placeholder="Passenger Name" required>
+			</div>
+			<div class="form-group">
+				<input type="number" class="form-control" name="phone_no" placeholder="Passenger Phone Number" required>
+			</div>
+			<div class="form-group">
+				<select name="vehicle" class="form-control" required>
+					<option>Please Select a Vehicle</option>
+					{% for vehicle in vehicles %}
+						<option value="{{ vehicle.id }}">{{ vehicle.name }}</option>
+					{% empty %}
+						<option>No Vehicle Yet</option>
+					{% endfor %}
+				</select>
+			</div>
+			<button class="btn btn-success mt-3" type="submit"><strong>Add Passenger</strong></button>
+		</form>
+
+{% endblock %}

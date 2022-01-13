@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CTManager</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/all.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'gh-logo.png' %}" class="nav-img"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navStuff">
+			<a href="#" class="navbar-toggler-icon"></a>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navStuff">
+			<ul class="navbar-nav ml-auto">
+				{% if user.is_authenticated %}
+					<li class="nav-item">
+						<a href="{% url 'add_passenger' %}" class="nav-link"><strong class="nav-texts">New Passenger</strong></a>		
+					</li>
+					<li class="nav-item active">
+						<a href="{% url 'add_vehicle' %}" class="nav-link"><strong class="nav-texts">New Vehicle</strong></a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">Logged in as: <strong class="nav-texts">{{ user }}</strong></a>
+					</li>
+					<form method="POST" action="{% url 'logout_user' %}">
+						{% csrf_token %}
+						<li class="nav-item">
+							<button class="btn btn-sm" type="submit"><a href="{% url 'logout_user' %}" class="nav-link"><strong class="nav-texts">Logout</strong></a></button>
+						</li>
+					</form>
+				{% else %}
+				<li class="nav-item">
+					<a href="{% url 'login_user' %}" class="nav-link"><strong class="nav-texts">Login</strong></a>
+				</li>
+
+				{% endif %}
+
+			</ul>
+		</div>
+	</nav>
+    
+		{% block content %}
+
+        {% endblock %}
+
+</body>
+	<footer class="text-center">&copy;Copyright See Sharp Developers 2022</footer>
+</html>

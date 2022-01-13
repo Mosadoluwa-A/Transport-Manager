@@ -1,0 +1,47 @@
+
+
+
+body{
+	font-family: "Poppins", Arial;
+}
+
+.nav-texts{
+	font-family: "Poppins", Arial;
+	color: #3a1662;
+}
+
+.nav-img{
+	width: 10rem;
+}
+
+#main{
+	background-color: #3a1662;
+	/*background-color: #050575;*/
+	height: 115vh;
+	padding: 2rem;
+}
+#main-2{
+	background-color: #3a1662;
+	/*background-color: #050575;*/
+	height: 135vh;
+	padding: 2rem;
+}
+
+#main-3{
+	background-color: #bbbbbb;
+	/*background-color: #050575;*/
+	height: 90vh;
+	padding: 2rem;
+}
+
+.cust-card{
+	border-radius: 5rem;
+	border-color: #7dba88;
+	border-width: .5rem;
+}
+
+.btn-purp{
+	background-color: #3a1662;
+	color: white;
+}
+

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+			{% if message.level == 25 %}
+				<div class="alert  alert-success {{ message.tags }} alert-dismissible w-25 mt-2" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{ message | safe }}
+				</div>
+			{% else %}
+				<div class="alert  alert-danger {{ message.tags }} alert-dismissible w-25 mt-2" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{ message | safe }}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<section id="main">
+		<h4 class="display-4 text-white">Add a New Vehicle</h4>
+
+		<form method="post" action=" " class="w-50 bg-light p-5">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="text" class="form-control" name="name" placeholder="Vehicle Name" required>
+			</div>
+			<div class="form-group">
+				<select class="form-control" name="admin" required>
+					<option>Please Select the admin in charge</option>
+					{% for user in users %}
+						<option value="{{ user.id }}">{{ user.get_full_name }}</option>
+					{% empty %}
+						<option>No user Available</option>
+					{% endfor %}
+				</select>
+			</div>
+			<button class="btn btn-success mt-3" type="submit"><strong>Add Vehicle</strong></button>
+		</form>
+
+
+	</section>
+{% endblock %}
