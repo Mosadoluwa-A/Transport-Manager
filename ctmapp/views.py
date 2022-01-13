@@ -57,12 +57,12 @@ def vehicle_detail(request, vehicle_id):
 
         msg = request.POST['all-msg']
         passengers = Passenger.objects.filter(is_active=True)
-        for passenger in vehicle.passengers:
+        for passenger in passengers:
             message = client.messages \
                 .create(
-                    body=msg,
+                    body="Hello there! welcome aboard!",
                     from_='+19377779998',
-                    to=passenger.phone_no
+                    to="+234"+str(passenger.phone_no)
             )
 
         messages.success(request, "Messages Sent Successfully")
