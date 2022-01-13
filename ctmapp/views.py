@@ -48,7 +48,7 @@ def vehicle_detail(request, vehicle_id):
         return render(request, 'vehicle-detail.html', context)
     else:
         vehicle = get_object_or_404(Vehicle, id=vehicle_id)
-        dotenv_file = settings.dotenv_file
+        dotenv_file = os.path.join(settings.BASE_DIR, '.env')
         if os.path.isfile(dotenv_file):
             dotenv.load_dotenv(dotenv_file)
         account_sid = os.environ['TWILIO_ACCOUNT_SID']
