@@ -66,7 +66,7 @@ def vehicle_detail(request, vehicle_id):
             )
 
         messages.success(request, "Messages Sent Successfully")
-        return redirect(vehicle_detail)
+        return redirect(vehicle_detail, vehicle_id)
 
 
 @login_required
