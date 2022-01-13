@@ -1,1 +1,1 @@
-web: gunicorn ctmanager.wsgi --log
+web: gunicorn ctmanager.wsgi
