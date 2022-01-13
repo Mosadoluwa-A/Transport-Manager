@@ -25,13 +25,12 @@ def home(request):
         auth_token = os.environ['TWILIO_AUTH_TOKEN']
         client = Client(account_sid, auth_token)
 
-        # msg = request.POST['all-msg']
-        # print(msg)
+        msg = request.POST['all-msg']
         passengers = Passenger.objects.filter(is_active=True)
         for passenger in passengers:
             message = client.messages \
                 .create(
-                    body="Hello there! welcome aboard!",
+                    body=f'{msg}',
                     from_='+19377779998',
                     to="+234"+str(passenger.phone_no)
             )
@@ -60,7 +59,7 @@ def vehicle_detail(request, vehicle_id):
         for passenger in passengers:
             message = client.messages \
                 .create(
-                    body="Hello there! welcome aboard!",
+                    body=f'{msg}',
                     from_='+19377779998',
                     to="+234"+str(passenger.phone_no)
             )
