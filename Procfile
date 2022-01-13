@@ -1,1 +1,1 @@
-web: gunicorn dfbhr.wsgi
+web: gunicorn ctmanager.wsgi --log
