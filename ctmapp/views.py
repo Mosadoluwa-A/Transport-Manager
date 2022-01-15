@@ -140,5 +140,6 @@ def login_user(request):
 
 def logout_user(request):
     if request.method == "POST":
+        print("Logging Out...")
         logout(request)
     return redirect(login_user)
